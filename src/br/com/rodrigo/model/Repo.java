@@ -6,11 +6,13 @@ import java.util.Objects;
 
 public class Repo {
     private String name;
+    private int index;
     private List<Repo> outputs;
     private List<Repo> inputs;
 
-    public Repo(String name) {
+    public Repo(String name, int index) {
         this.name = name;
+        this.index = index;
         this.inputs = new ArrayList<>();
         this.outputs = new ArrayList<>();
     }
@@ -54,5 +56,13 @@ public class Repo {
 
     @Override public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

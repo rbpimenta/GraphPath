@@ -4,22 +4,28 @@ import br.com.rodrigo.model.Item;
 import br.com.rodrigo.model.Repo;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Main {
 
+    private static final int SIZE_PATH_WANTED = 1;
+    private static final int NO_RAIZ = 17;
+
+    private static final List<Integer> indexAnalisados = Arrays.asList(
+
+    );
+
     static List<Repo> repoMap = new ArrayList<>();
     static List<Object> bestSolution = new ArrayList<>();
-
-        static final String FILENAME = "src/br/com/rodrigo/repo_dependencies.csv";
-//    static final String FILENAME = "src/br/com/rodrigo/example1.csv";
+    static final String FILENAME = "src/br/com/rodrigo/repo2.csv";
+//  static final String FILENAME = "src/br/com/rodrigo/repo_dependencies.csv";
+//  static final String FILENAME = "src/br/com/rodrigo/example1.csv";
 
     public static void main(String[] args) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FILENAME))) {
@@ -40,20 +46,24 @@ public class Main {
 
             System.out.println("######################");
             System.out.println();
+            System.out.print("Escolha o nó raiz: ");
+            int noRaiz = NO_RAIZ;
 
-//            solution(repoMap.get(17), null);
-            findPath(repoMap.get(17), new ArrayList<>());
+            System.out.println("######################");
+            System.out.println();
+
+//            solution(repoMap.get(noRaiz), null);
+            findPath(repoMap.get(noRaiz), new ArrayList<>());
 
             System.out.println("######################");
             System.out.println();
 
             System.out.print("Printar caminho maiores do que: ");
-            Scanner reader = new Scanner(System.in);
-            int sizePathWanted = reader.nextInt();
-            reader.close();
+            int sizePathWanted = SIZE_PATH_WANTED;
+
             System.out.println("Caminhos maiores do que " + sizePathWanted);
             paths.forEach((index, path) -> {
-                if (path.size() > sizePathWanted) {
+                if (path.size() > sizePathWanted && !indexAnalisados.contains(index) && index < 58) {
                     System.out.println("index: " + index + " | caminho: " + path);
                 }
             });
@@ -144,7 +154,7 @@ public class Main {
 
     private static void printRepoMap() {
         repoMap.forEach(repo -> {
-            String output = repo.getName() + " | " + repo.getInputs().size() + " | " + repo.getOutputs().size();
+            String output = repo.getIndex() + " - " + repo.getName() + " | " + repo.getInputs().size() + " | " + repo.getOutputs().size();
             System.out.println(output);
         });
     }
@@ -183,8 +193,10 @@ public class Main {
 
     private static void criarRepositorios(String line) {
         String[] names = line.split(";");
+        int index = 0;
         for (String name : names) {
-            repoMap.add(new Repo(name));
+            repoMap.add(new Repo(name, index));
+            index++;
         }
     }
 }

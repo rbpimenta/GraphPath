@@ -1,7 +1,7 @@
-package br.com.rodrigo;
+package br.com.graph.path;
 
-import br.com.rodrigo.model.Item;
-import br.com.rodrigo.model.Repo;
+import br.com.graph.path.model.Item;
+import br.com.graph.path.model.Repo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class Main {
 
     private static final int SIZE_PATH_WANTED = 1;
-    private static final int NO_RAIZ = 17;
+    private static final int NO_RAIZ = 2;
 
     private static final List<Integer> indexAnalisados = Arrays.asList(
 
@@ -23,9 +23,9 @@ public class Main {
 
     static List<Repo> repoMap = new ArrayList<>();
     static List<Object> bestSolution = new ArrayList<>();
-    static final String FILENAME = "src/br/com/rodrigo/repo2.csv";
-//  static final String FILENAME = "src/br/com/rodrigo/repo_dependencies.csv";
-//  static final String FILENAME = "src/br/com/rodrigo/example1.csv";
+//    static final String FILENAME = "src/br/com/graph/path/repo2.csv";
+//  static final String FILENAME = "src/br/com/graph/path/repo_dependencies.csv";
+  static final String FILENAME = "src/br/com/graph/path/example1.csv";
 
     public static void main(String[] args) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FILENAME))) {

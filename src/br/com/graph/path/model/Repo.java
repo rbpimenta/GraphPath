@@ -1,4 +1,4 @@
-package br.com.rodrigo.model;
+package br.com.graph.path.model;
 
 import java.util.ArrayList;
 import java.util.List;

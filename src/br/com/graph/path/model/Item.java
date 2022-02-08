@@ -1,4 +1,4 @@
-package br.com.rodrigo.model;
+package br.com.graph.path.model;
 
 public class Item {
     private Repo atual;
